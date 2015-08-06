@@ -1,46 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-#Install Google Chrome
-sudo apt-get install libxss1 libappindicator1 libindicator7
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
-sudo dpkg -i google-chrome*.deb
-sudo apt-get install -f
-
-# Install xvfb
-sudo apt-get install -y xvfb
-  
-# Install API for browsermob-proxy, selenium and xvfb
-sudo apt-get install python-pip
-sudo pip install selenium browsermob-proxy xvfbwrapper --upgrade
- 
-# download browsermob proxy
-wget https://github.com/downloads/lightbody/browsermob-proxy/browsermob-proxy-2.0-beta-6-bin.zip
-unzip browsermob-proxy-2.0-beta-6-bin.zip
-
-# copy browsermob-proxy to /var/lib
-sudo cp -r browsermob-proxy /var/lib/
-sudo chown -R a:a /var/lib/browsermob-proxy
- 
-# download selenium-server
-wget http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar
- 
-# start selenium-server
-java /usr/bin/java -jar selenium-server.jar >> ./log/selenium.$(date +"%Y%d%m").log 2>&1&
- 
-# download chrome driver
-sudo apt-get install unzip
-
-wget -N http://chromedriver.storage.googleapis.com/2.10/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
-chmod +x chromedriver
-
-sudo mv -f chromedriver /usr/local/share/chromedriver
-sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
- 
-"""
 
 from browsermobproxy import Server
 from selenium import webdriver
@@ -85,7 +44,7 @@ class performance(object):
         if args['browser'] == 'chrome':
         	print "Browser: Chrome"
         	print "URL: {0}".format(args['url'])
-        	chromedriver = "./bin/chromedriver"
+        	chromedriver = "path/to/chromedriver"
         	os.environ["webdriver.chrome.driver"] = chromedriver
         	url = urlparse.urlparse (self.proxy.proxy).path
         	chrome_options = webdriver.ChromeOptions()
@@ -133,7 +92,7 @@ if __name__ == '__main__':
     	parser.add_argument('-b','--browser',help='Select Chrome or Firefox',required=True)
     	parser.add_argument('-p','--path',help='Select path for output files',required=False)
     	args = vars(parser.parse_args())
-    	path = "./bin/browsermob-proxy/bin/browsermob-proxy"
+    	path = "path/to/browsermob-proxy"
     	RUN = performance(path)
     	RUN.start_all(args)
     	RUN.create_har(args)
