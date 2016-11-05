@@ -24,7 +24,7 @@ class performance(object):
     @staticmethod
     def __store_into_file(args,title, result):
         #store data collected into file
-        if(args['path']!=NULL):
+        if 'path' in args:
         	har_file = open(args['path']+'/'+title + '.json', 'w')
         else:
         	har_file = open(title + '.json', 'w')
@@ -44,11 +44,12 @@ class performance(object):
         if args['browser'] == 'chrome':
         	print "Browser: Chrome"
         	print "URL: {0}".format(args['url'])
-        	chromedriver = "path/to/chromedriver"
+        	chromedriver = os.getenv("CHROMEDRIVER_PATH", "/chromedriver")
         	os.environ["webdriver.chrome.driver"] = chromedriver
         	url = urlparse.urlparse (self.proxy.proxy).path
         	chrome_options = webdriver.ChromeOptions()
         	chrome_options.add_argument("--proxy-server={0}".format(url))
+        	chrome_options.add_argument("--no-sandbox")
         	self.driver = webdriver.Chrome(chromedriver,chrome_options = chrome_options)
         #firefox
         if args['browser'] == 'firefox':
@@ -92,7 +93,7 @@ if __name__ == '__main__':
     	parser.add_argument('-b','--browser',help='Select Chrome or Firefox',required=True)
     	parser.add_argument('-p','--path',help='Select path for output files',required=False)
     	args = vars(parser.parse_args())
-    	path = "path/to/browsermob-proxy"
+    	path = os.getenv('BROWSERMOB_PROXY_PATH', '/browsermob-proxy-2.1.2/bin/browsermob-proxy')
     	RUN = performance(path)
     	RUN.start_all(args)
     	RUN.create_har(args)

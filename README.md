@@ -3,7 +3,7 @@ Create HAR and performance data headlessly with Chrome and Firefox using Browser
 
 This tool helps you to capture HTTP Archive (HAR) and additional performance data using Navigation Timing API from either Chrome or Firefox headlessly.
 
-###Setup
+### Setup (Manual)
 
 1. Install xvfb
 
@@ -38,4 +38,23 @@ This tool helps you to capture HTTP Archive (HAR) and additional performance dat
 python speedprofile.py --url [url to test] --browser [chrome/fireox] --path [path to save output files]
 
 
+### Dockerized Setup and Usage (Chrome Only)
 
+1. Install Docker -- https://www.docker.com/
+
+2. Run the build-chrome script to create a docker image tagged `speedprofile-chrome`
+
+```sh
+./docker/build-chrome.sh
+
+# To test your local image, run:
+docker run -v $(pwd)/output:/output speedprofile-chrome <url>
+
+# Performance/HAR files will be generated in the local "output" folder.
+```
+
+3. Quickstart: If you want to skip the build (2), you can simply run the public docker image with the included wrapper script:
+
+```
+./docker/run-chrome.sh <url>
+```
