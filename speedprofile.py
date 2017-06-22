@@ -28,7 +28,7 @@ class performance(object):
         	har_file = open(args['path']+'/'+title + '.json', 'w')
         else:
         	har_file = open(title + '.json', 'w')
-        har_file.write(str(result))
+        har_file.write(result.encode('utf-8'))
        	har_file.close()
 
     def __start_server(self):
