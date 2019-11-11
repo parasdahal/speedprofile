@@ -11,8 +11,7 @@ This tool helps you to capture HTTP Archive (HAR) and additional performance dat
    
 2. Download Browsermob-proxy
 
-   wget https://github.com/downloads/lightbody/browsermob-proxy/browsermob-proxy-2.0-beta-6-bin.zip  
-   unzip browsermob-proxy-2.0-beta-6-bin.zip
+   https://github.com/lightbody/browsermob-proxy
 
 3. Download selenium-server
 
