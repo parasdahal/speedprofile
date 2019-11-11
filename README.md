@@ -32,7 +32,7 @@ This tool helps you to capture HTTP Archive (HAR) and additional performance dat
    sudo apt-get install python-pip  
    sudo pip install selenium browsermob-proxy xvfbwrapper --upgrade  
 
-###Usage
+### Usage
 
 python speedprofile.py --url [url to test] --browser [chrome/fireox] --path [path to save output files]
 
